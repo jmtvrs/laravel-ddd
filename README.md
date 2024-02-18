@@ -69,4 +69,4 @@ protected static function newFactory()
     return new ModelFactory();
 }
 ```
-The method was added to the make:model, but feel free to remove it if the model does not require a factory. 
+The method was added to the make:model stub, but feel free to remove it if the model does not require a factory. 
