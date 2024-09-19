@@ -1,0 +1,13 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnSave": true,
+    "rest-client.environmentVariables": {
+        "$shared": {},
+        "dev": {
+            "host": "http://laravel-ddd.test"
+        },
+        "prod": {
+            "host": ""
+        }
+    }
+}
