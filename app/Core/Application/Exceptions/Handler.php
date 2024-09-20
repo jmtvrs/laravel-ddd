@@ -4,6 +4,7 @@ namespace App\Core\Application\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 
 class Handler extends ExceptionHandler
 {
@@ -26,5 +27,18 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        // Check if it's a ThrottleRequestsException
+        if ($exception instanceof ThrottleRequestsException) {
+            return response()->json([
+                'message' => 'Too many requests. Please slow down.',
+            ], 429);
+        }
+
+        // Default render method for other exceptions
+        return parent::render($request, $exception);
     }
 }
