@@ -35,12 +35,22 @@ class Handler extends ExceptionHandler
     {
         // Check if it's a ThrottleRequestsException
         if ($exception instanceof ThrottleRequestsException) {
-            return response()->json([
-                'message' => 'Too many requests. Please slow down.',
-            ], 429);
+            return response()->json(['message' => trans('throttle.too_many_requests')], 429);
         }
 
         // Default render method for other exceptions
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Determine if the exception handler response should be JSON.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $e
+     * @return bool
+     */
+    protected function shouldReturnJson($request, Throwable $e)
+    {
+        return true;
     }
 }

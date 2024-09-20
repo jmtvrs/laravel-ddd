@@ -1,5 +1,6 @@
-@token=127|aX88vc45TCg5kO9DLLiRk7SxBxXcnvE2NKMNe1Fba89ddeb5
+@token=249|MLKcKmMTP8GGeEQdKR5UPqjYT4rralpbHZiwOe0C4267a75c
 
 POST {{host}}/api/v1/logout
 Content-Type: application/json
+//Accept: application/json
 Authorization: Bearer {{token}}

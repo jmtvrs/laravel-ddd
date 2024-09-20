@@ -58,8 +58,6 @@ final class AuthenticationController extends Controller
     {
         $this->userService->logout();
 
-        return response()->json([
-            'message' => 'logged out',
-        ]);
+        return response()->json(['message' => trans('auth.logged_out')]);
     }
 }
