@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\External\Web\Http\Middleware;
 
 use App\External\Infrastructure\Providers\RouteServiceProvider;
@@ -17,7 +19,7 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
-        $guards = empty($guards) ? [null] : $guards;
+        $guards = empty($guards) ? [NULL] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {

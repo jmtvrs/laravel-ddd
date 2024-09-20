@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Application\Providers;
 
 use Illuminate\Auth\Events\Registered;
@@ -32,6 +34,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function shouldDiscoverEvents(): bool
     {
-        return false;
+        return FALSE;
     }
 }

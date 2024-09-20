@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -30,7 +32,7 @@ return [
 
     'bcrypt' => [
         'rounds' => env('BCRYPT_ROUNDS', 12),
-        'verify' => true,
+        'verify' => TRUE,
     ],
 
     /*
@@ -48,7 +50,7 @@ return [
         'memory' => 65536,
         'threads' => 1,
         'time' => 4,
-        'verify' => true,
+        'verify' => TRUE,
     ],
 
 ];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\External\Dtos;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -17,7 +19,7 @@ class RegisterRequest extends FormRequest
             'firstName' => ['required', 'string'],
             'lastName' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'unique:users'],
-            'password' => ['required', 'string', 'min:10', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',],
+            'password' => ['required', 'string', 'min:10', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'],
         ];
     }
 }

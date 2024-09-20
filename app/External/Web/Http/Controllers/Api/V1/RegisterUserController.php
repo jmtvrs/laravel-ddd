@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\External\Web\Http\Controllers\Api\V1;
 
-use App\External\Dtos\RegisterRequest;
+use App\Core\Application\Services\Authentication\AuthenticationService;
 use App\External\Dtos\AuthenticationResponse;
+use App\External\Dtos\RegisterRequest;
 use App\External\Web\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use App\Core\Application\Services\Authentication\AuthenticationService;
 
 final class RegisterUserController extends Controller
 {

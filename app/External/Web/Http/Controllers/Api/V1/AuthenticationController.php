@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\External\Web\Http\Controllers\Api\V1;
 
-use App\External\Dtos\LoginRequest;
+use App\Core\Application\Services\Authentication\AuthenticationService;
 use App\External\Dtos\AuthenticationResponse;
+use App\External\Dtos\LoginRequest;
 use App\External\Web\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use App\Core\Application\Services\Authentication\AuthenticationService;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
@@ -30,7 +32,7 @@ final class AuthenticationController extends Controller
             $request->ip()
         );
 
-        if ($user === null) {
+        if ($user === NULL) {
             RateLimiter::hit($request->throttleKey());
 
             throw ValidationException::withMessages([
@@ -57,7 +59,7 @@ final class AuthenticationController extends Controller
         $this->userService->logout();
 
         return response()->json([
-            "message" => "logged out"
+            'message' => 'logged out',
         ]);
     }
 }

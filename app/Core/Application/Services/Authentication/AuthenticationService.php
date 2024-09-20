@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Application\Services\Authentication;
 
 use App\Core\Domain\Models\User;
@@ -40,7 +42,7 @@ final class AuthenticationService
     public function authenticate(
         string $email,
         string $password
-    ): AuthenticationResult|null {
+    ): ?AuthenticationResult {
 
         $user = User::where('email', $email)->first();
 
@@ -54,7 +56,7 @@ final class AuthenticationService
             );
         }
 
-        return null;
+        return NULL;
     }
 
     public function logout(): void

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\External\Web\Http\Controllers\Api\V1\RegisterUserController;
+declare(strict_types=1);
+
 use App\External\Web\Http\Controllers\Api\V1\AuthenticationController;
-
-
+use App\External\Web\Http\Controllers\Api\V1\RegisterUserController;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
 
