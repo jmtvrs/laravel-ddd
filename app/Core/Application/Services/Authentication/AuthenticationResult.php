@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Application\Services\Authentication;
 
-class AuthenticationResult
+final class AuthenticationResult
 {
     public function __construct(
         public readonly string $id,

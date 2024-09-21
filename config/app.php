@@ -169,6 +169,7 @@ return [
         \App\Core\Application\Providers\EventServiceProvider::class,
         \App\Core\Application\Providers\AuthServiceProvider::class,
         \App\External\Infrastructure\RouteServiceProvider::class,
+        \App\External\Infrastructure\RepositoryServiceProvider::class,
     ])->toArray(),
 
     /*

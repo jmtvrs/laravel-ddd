@@ -9,5 +9,6 @@
         "prod": {
             "host": ""
         }
-    }
+    },
+    "intelephense.diagnostics.undefinedMethods": false
 }

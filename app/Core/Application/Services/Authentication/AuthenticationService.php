@@ -11,9 +11,14 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Core\Application\Common\Interfaces\IUserRepository;
 
 final class AuthenticationService
 {
+    public function __construct(
+        private readonly IUserRepository $repository
+    ) {}
+
     public function createUser(
         string $firstName,
         string $lastName,
@@ -21,7 +26,7 @@ final class AuthenticationService
         string $password
     ): AuthenticationResult {
 
-        $user = User::create([
+        $user = $this->repository->createUser([
             'id' => Str::uuid(),
             'name' => $firstName . ' ' . $lastName,
             'email' => $email,
@@ -44,7 +49,7 @@ final class AuthenticationService
         string $password
     ): ?AuthenticationResult {
 
-        $user = User::where('email', $email)->first();
+        $user = $this->repository->getUserBy('email', $email);
 
         if ($user && Hash::check($password, $user->password)) {
             return new AuthenticationResult(
@@ -61,8 +66,12 @@ final class AuthenticationService
 
     public function logout(): void
     {
-        //Auth::user()?->currentAccessToken()->delete();
-        auth()->user()->tokens()->delete();
+        Auth::user()?->currentAccessToken()->delete();
+    }
+
+    public function revokeAllUserTokens(): void
+    {
+        Auth::user()?->tokens()->delete();
     }
 
     private function generateUserToken(User $user): string

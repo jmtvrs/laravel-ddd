@@ -1,4 +1,4 @@
-@token=249|MLKcKmMTP8GGeEQdKR5UPqjYT4rralpbHZiwOe0C4267a75c
+@token=253|ooEyGKOHS19kqK4av7ubgriceujfY7qnFSDhIZvEf96be45c
 
 POST {{host}}/api/v1/logout
 Content-Type: application/json
