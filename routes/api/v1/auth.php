@@ -2,26 +2,31 @@
 
 declare(strict_types=1);
 
-use App\External\Web\Http\Controllers\Api\V1\AuthenticationController;
-use App\External\Web\Http\Controllers\Api\V1\RegisterUserController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Web\Controllers\Api\V1\Auth\CreateUserController;
+use Web\Controllers\Api\V1\Auth\UserLoginController;
+use Web\Controllers\Api\V1\Auth\UserLogoutController;
 
-Route::middleware('guest')->group(function () {
+Route::group([
+    'as' => 'auth.',
+    'prefix' => 'auth',
+], function () {
 
-    Route::post('register', RegisterUserController::class)->name('register');
+    Route::middleware('guest')->group(function () {
+        Route::post('register', CreateUserController::class)
+            ->name('user.register');
+        Route::post('login', UserLoginController::class)
+            ->name('user.login');
+    });
 
-    Route::post('login', [AuthenticationController::class, 'login'])->name('login');
+    Route::middleware('auth:sanctum')->group(function () {
+
+        Route::post('logout', UserLogoutController::class)
+            ->name('user.logout');
+
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+        })->name('get.user');
+    });
 });
-
-Route::middleware('auth:sanctum')->group(function () {
-
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    })->name('logged-in-user');
-
-    Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
-});
-
-
-

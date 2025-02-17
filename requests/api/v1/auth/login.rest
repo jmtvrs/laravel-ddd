@@ -1,8 +1,0 @@
-POST {{host}}/api/v1/login
-Content-Type: application/json
-
-{
-    "email": "email2@domain.com",
-    "password": "Pa$$word10",
-    "remember": true
-}

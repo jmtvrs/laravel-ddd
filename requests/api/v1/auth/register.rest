@@ -1,9 +1,0 @@
-POST {{host}}/api/v1/register
-Content-Type: application/json
-
-{
-    "firstName": "Fist",
-    "lastName": "Last",
-    "email": "email3@domain.com",
-    "password": "Pa$$word10"
-}

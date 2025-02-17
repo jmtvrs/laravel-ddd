@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Web\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', WelcomeController::class)
+    ->name('home');

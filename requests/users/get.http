@@ -1,0 +1,3 @@
+GET {{host}}/api/v1/auth/user
+Content-Type: application/json
+Authorization: Bearer {{token}}

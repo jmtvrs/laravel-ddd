@@ -1,29 +1,34 @@
 {
+    "$schema": "https://getcomposer.org/schema.json",
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^11",
+        "php": "^8.2",
+        "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.9"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.17",
-        "laravel/sail": "^1.18",
-        "mockery/mockery": "^1.4.4",
+        "fakerphp/faker": "^1.23",
+        "laravel/pail": "^1.1",
+        "laravel/pint": "^1.13",
+        "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "^2.35",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "spatie/laravel-ignition": "^2.0"
+        "pestphp/pest": "^3.7",
+        "pestphp/pest-plugin-laravel": "^3.1"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
+            "Application\\": "src/Application/",
+            "Domain\\": "src/Domain/",
+            "Infrastructure\\": "src/Infrastructure/",
+            "Web\\": "src/Web/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
@@ -45,19 +50,28 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\""
         ],
         "pint:test": [
-           "./vendor/bin/pint --test"
+            "./vendor/bin/pint --test"
         ],
         "pint:fix": [
-           "./vendor/bin/pint"
+            "./vendor/bin/pint"
         ],
         "test": [
-           "./vendor/bin/pest"
+            "./vendor/bin/pest --compact --parallel --processes=10"
+        ],
+        "test:profile": [
+            "./vendor/bin/pest --profile"
         ],
         "test:coverage": [
-            "XDEBUG_MODE=coverage ./vendor/bin/pest --coverage-html docs/coverage"
+            "XDEBUG_MODE=coverage ./vendor/bin/pest --compact --parallel --processes=10 --coverage --min=90 --coverage-html docs/coverage"
         ]
     },
     "extra": {

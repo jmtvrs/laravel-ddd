@@ -1,5 +1,0 @@
-@token=250|uRhPbbwnaDYT3aB3DvbjSgLWt5vautpfqN4XnkmA041e4be1
-
-GET {{host}}/api/v1/user
-Content-Type: application/json
-Authorization: Bearer {{token}}

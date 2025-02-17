@@ -2,7 +2,9 @@
     "files.trimTrailingWhitespace": true,
     "editor.formatOnSave": true,
     "rest-client.environmentVariables": {
-        "$shared": {},
+        "$shared": {
+            "token": "16|ZeB8maU1uUFVQmZWMFs6pLhq7yoXhYTf7Z5rtMyK76aeff7d",
+        },
         "dev": {
             "host": "http://laravel-ddd.test"
         },

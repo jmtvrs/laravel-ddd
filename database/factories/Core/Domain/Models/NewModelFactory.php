@@ -7,7 +7,7 @@ namespace Database\Factories\Core\Domain\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Core\Domain\Models\NewModel>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Domain\Models\NewModel>
  */
 class NewModelFactory extends Factory
 {
